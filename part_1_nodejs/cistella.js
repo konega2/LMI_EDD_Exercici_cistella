@@ -11,6 +11,19 @@ import readlineSync from 'readline-sync';
 // TO-DO
 // Implementa una classe cistella, que contindrà com a propietat
 // - Un vector (inicialment buit), al que afegirem parells JSON {producte, quantitat}
+// cistella.js (Mòdul principal)
+import readlineSync from 'readline-sync';
+
+// TO-DO
+// Implementa una classe Producte, amb les propietats (que podran inicialitzar-se en el constructor):
+// - descripcio: amb la descripció del producte
+// - preu: el preu per unitat del producte
+// I el mètode (funció):
+// - toString(): que retorna un strin format per la descripció i el preu, amb el format "proucte - preu €".
+
+// TO-DO
+// Implementa una classe cistella, que contindrà com a propietat
+// - Un vector (inicialment buit), al que afegirem parells JSON {producte, quantitat}
 
 // Aquesta classe suportarà els mètodes (funcions internes a la classe)
 // - afegirProducte(producte, quantitat): Que afegirà a la llista de productes el producte indicat i la quantitat. 
@@ -91,3 +104,48 @@ function iniciarAplicacio() {
 
 // Iniciar l'aplicació
 iniciarAplicacio();
+
+
+class Producte {
+    descripcion = "";
+    precio = 0;
+
+    constructor(descripcion, precio) {
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
+
+    toString() {
+        return "El producto ${this.descripcion} vale${this.precio} €";   
+    }
+}
+
+let manzana = new Producte("Manzana", 2);
+console.log(manzana.toString());
+
+
+class Cistella {
+    constructor() {
+        this.productes = [];
+    }
+    
+    afegirProducte(producte, quantitat) {
+        this.productes.push({ 
+            producte: producte,  
+            quantitat:parseInt(quantitat) 
+        });
+    }
+
+    mostrarCistella() {
+    for (let i = 0; i < this.productes.length; i++) {
+        let cantidad = this.productes[i].quantitat;
+        let producto = this.productes[i].producte;
+        let total = cantidad * producto.precio;
+
+        console.log(`${producto.toString()} x ${cantidad} = ${total} €`);
+    }
+}
+}
+
+
+
